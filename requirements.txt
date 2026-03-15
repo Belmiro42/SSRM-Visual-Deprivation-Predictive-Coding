@@ -1,0 +1,7 @@
+pyfirmata2
+sounddevice
+numpy
+matplotlib
+PyQt6
+seaborn 
+soundfile
