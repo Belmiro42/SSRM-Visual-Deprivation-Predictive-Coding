@@ -20,7 +20,6 @@ alphabet_filenames = os.listdir("./AlphabetSounds")
 quality_files = []
 alphabet_files = []
 list = dickle.load(open("TestOrder.p", "rb"))
-board = pyfirmata2.Arduino('/dev/ttyUSB0')
 sin_wave = []
 sin_wave_left = []
 sin_wave_right = []
@@ -37,26 +36,7 @@ def load_audio():
         alphabet_files.append([data,fs])
     list = dickle.load(open("TestOrder.p", "rb"))
 
-def arduino_setup():
-    board.digital[LEFT]     .mode = pyfirmata2.OUTPUT
-    board.digital[RIGHT]    .mode = pyfirmata2.OUTPUT
-    board.digital[MIDDLE]   .mode = pyfirmata2.OUTPUT
-    board.digital[RED]      .mode = pyfirmata2.PWM
-    board.digital[GREEN]    .mode = pyfirmata2.PWM
-    board.digital[BLUE]     .mode = pyfirmata2.PWM
 
-def on(mlr):
-    board.digital[14 - mlr].write    (1)
-    board.digital[15 - mlr].write  (1)
-    board.digital[mlr].write    (1)
-
-def off(mlr):
-    board.digital[LEFT].write   (0)
-    board.digital[RIGHT].write  (0)
-    board.digital[MIDDLE].write (0)
-    board.digital[RED].write    (0)
-    board.digital[GREEN].write  (0)
-    board.digital[BLUE].write   (0)
 
 def sin_440():
     global sin_wave
@@ -73,24 +53,18 @@ def sin_440():
 
 def play_sounds():
     for combination in list:
-        on(RIGHT)
         sd.play(sin_wave_left, 44100, blocksize = 1024)
         sd.wait()
-        off(RIGHT)
         
-        on(LEFT)
         sd.play(sin_wave_right, 44100, blocksize = 1024)
         sd.wait()
-        off(LEFT)
         
         print(alphabet_filenames[combination[0]], quality_filenames[combination[1]])
         sd.play(alphabet_files[combination[0]][0], alphabet_files[combination[0]][1], device=DEVICE, blocksize = 4096) 
         sd.wait()
         sd.play(quality_files[combination[1]][0], quality_files[combination[1]][1], device=DEVICE, blocksize = 4096)
         sd.wait()
-        timefr.sleep(5)
 
 load_audio()
 sin_440()
-arduino_setup()      
 play_sounds()
