@@ -1,3 +1,4 @@
+import random
 import sounddevice  as sd
 import soundfile    as sf
 import time         as timefr
@@ -6,14 +7,17 @@ import pickle       as dickle
 import pyfirmata2
 import os
 
-LEFT            = 4
-MIDDLE          = 5
-RIGHT           = 6
-RED             = 9
-GREEN           = 10
-BLUE            = 11
+board = pyfirmata2.Arduino('/dev/ttyUSB0')
+
+L1              = board.get_pin('d:4:o')
+L2              = board.get_pin('d:5:o')
+R2              = board.get_pin('d:3:o')
+R1              = board.get_pin('d:6:o')
+GREEN           = board.get_pin('d:7:o')
+BLUE            = board.get_pin('d:8:o')
+RED             = board.get_pin('d:9:o')
 SMOOTHNESS      = 10
-DEVICE      = "default"
+DEVICE          = "default"
 
 quality_filenames = os.listdir("./Qualities")
 alphabet_filenames = os.listdir("./AlphabetSounds")
@@ -37,26 +41,24 @@ def load_audio():
         alphabet_files.append([data,fs])
     list = dickle.load(open("TestOrder.p", "rb"))
 
-def arduino_setup():
-    board.digital[LEFT]     .mode = pyfirmata2.OUTPUT
-    board.digital[RIGHT]    .mode = pyfirmata2.OUTPUT
-    board.digital[MIDDLE]   .mode = pyfirmata2.OUTPUT
-    board.digital[RED]      .mode = pyfirmata2.PWM
-    board.digital[GREEN]    .mode = pyfirmata2.PWM
-    board.digital[BLUE]     .mode = pyfirmata2.PWM
+def on(led):
+    GREEN.write  (1)
+    BLUE.write   (1)
+    led.write    (1)
+    if led == L1:
+        led = L2
+    if led == R1:
+        led = R2
+    led.write(1)
 
-def on(mlr):
-    board.digital[14 - mlr].write    (1)
-    board.digital[15 - mlr].write  (1)
-    board.digital[mlr].write    (1)
-
-def off(mlr):
-    board.digital[LEFT].write   (0)
-    board.digital[RIGHT].write  (0)
-    board.digital[MIDDLE].write (0)
-    board.digital[RED].write    (0)
-    board.digital[GREEN].write  (0)
-    board.digital[BLUE].write   (0)
+def off():
+    L1.write     (0)
+    L2.write     (0)
+    R1.write     (0)
+    R2.write     (0)
+    RED.write    (0)
+    GREEN.write  (0)
+    BLUE.write   (0)
 
 def sin_440():
     global sin_wave
@@ -70,18 +72,34 @@ def sin_440():
     sin_wave = 2 * np.sin(2 * np.pi * frequency * t)
     sin_wave_left = np.vstack((sin_wave, np.zeros_like(sin_wave))).T
     sin_wave_right = np.vstack((np.zeros_like(sin_wave), sin_wave)).T
+    
+def print_time(fd, start, text):
+    now = timefr.time()
+    diff = now - start
+    fd.write(str(diff) + " " + text + "\n")
 
 def play_sounds():
-    for combination in list:
-        on(RIGHT)
-        sd.play(sin_wave_left, 44100, blocksize = 1024)
-        sd.wait()
-        off(RIGHT)
+    start = timefr.time()
+    fd = open(f"{start}.txt", "w")
+    for i in range(len(list)):
+        combination = list[i]
+        if (i % 2 == 0):
+            print_time(fd, start, "Left")
+            sd.play(sin_wave_left, 44100, blocksize = 1024)
+            sd.wait()
+            if (i < len(list) / 2):
+                print_time(fd, start, "Right Light")
+                on(R1)
+        off()
         
-        on(LEFT)
-        sd.play(sin_wave_right, 44100, blocksize = 1024)
-        sd.wait()
-        off(LEFT)
+        if (i % 2 == 1):
+            print_time(fd, start, "Left")
+            sd.play(sin_wave_right, 44100, blocksize = 1024)
+            sd.wait()
+            if (i < len(list) / 2):
+                print_time(fd, start, "Left Light")
+                on(L1)
+        off()
         
         print(alphabet_filenames[combination[0]], quality_filenames[combination[1]])
         sd.play(alphabet_files[combination[0]][0], alphabet_files[combination[0]][1], device=DEVICE, blocksize = 4096) 
@@ -91,6 +109,5 @@ def play_sounds():
         timefr.sleep(5)
 
 load_audio()
-sin_440()
-arduino_setup()      
+sin_440()  
 play_sounds()
