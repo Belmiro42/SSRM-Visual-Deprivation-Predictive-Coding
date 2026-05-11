@@ -1,0 +1,17 @@
+0 g Symmetrical
+7262 Left Beep Start
+7300 Right Light On
+7419 Right Light Off
+7419 Left Beep Stop
+7701 w Symmetrical
+14794 r Close
+17948 Left Beep Start
+17976 Right Light On
+18086 Right Light Off
+18086 Left Beep Stop
+23091 a Symmetrical
+29746 Right Beep Start
+29791 Left Light On
+29905 Left Light Off
+29905 Right Beep Stop
+30560 x Diagonal

@@ -1,0 +1,11 @@
+0 g Symmetrical
+7520 w Symmetrical
+14724 r Close
+22910 a Symmetrical
+30295 x Diagonal
+37235 x Curve
+43933 r Diagonal
+51549 h Diagonal
+58311 u Curve
+65499 m Diagonal
+72648 d Diagonal

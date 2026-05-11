@@ -1,0 +1,103 @@
+4003 g Symmetrical
+11255 Left Beep Start
+11286 Sound Light On
+11414 Sound Light Off
+11414 Left Beep Stop
+11696 w Symmetrical
+18871 r Close
+21964 Left Beep Start
+21994 Sound Light On
+22124 Sound Light Off
+22124 Left Beep Stop
+27129 a Symmetrical
+33784 Left Beep Start
+33813 Right Light On
+33942 Right Light Off
+33942 Left Beep Stop
+34598 x Diagonal
+41507 x Curve
+48247 r Diagonal
+55844 h Diagonal
+62606 u Curve
+64831 Left Beep Start
+64861 Sound Light On
+64983 Sound Light Off
+64983 Left Beep Stop
+69988 m Diagonal
+72088 Left Beep Start
+72121 Right Light On
+72237 Right Light Off
+72237 Left Beep Stop
+77241 d Diagonal
+84004 h Symmetrical
+90745 Left Beep Start
+90775 Right Light On
+90904 Right Light Off
+90904 Left Beep Stop
+91567 s Symmetrical
+98422 d Curve
+104930 d Symmetrical
+111673 c Diagonal
+118540 p Close
+125195 o Close
+131962 k Curve
+138640 z Close
+145316 i Curve
+151994 q Curve
+158842 n Curve
+165519 z Curve
+172112 p Diagonal
+178873 d Close
+185531 t Symmetrical
+192271 o Curve
+194265 Left Beep Start
+194293 Sound Light On
+194413 Sound Light Off
+194413 Left Beep Stop
+199418 j Close
+206180 s Diagonal
+213029 p Symmetrical
+219770 u Close
+226533 f Close
+233189 Left Beep Start
+233219 Sound Light On
+233347 Sound Light Off
+233347 Left Beep Stop
+233909 v Curve
+240763 a Diagonal
+247419 f Diagonal
+254158 j Symmetrical
+261007 Left Beep Start
+261036 Sound Light On
+261166 Sound Light Off
+261166 Left Beep Stop
+261912 z Symmetrical
+268667 k Symmetrical
+275556 j Curve
+277918 Left Beep Start
+277948 Sound Light On
+278061 Sound Light Off
+278061 Left Beep Stop
+283065 Left Beep Start
+283100 Sound Light On
+283223 Sound Light Off
+283224 Left Beep Stop
+283674 l Close
+290404 n Diagonal
+297250 a Curve
+303738 c Curve
+310437 m Close
+317199 r Curve
+324620 c Close
+331361 y Symmetrical
+338191 q Diagonal
+345189 l Curve
+351865 p Curve
+358436 a Close
+365028 g Close
+367653 Left Beep Start
+367682 Sound Light On
+367811 Sound Light Off
+367811 Left Beep Stop
+372814 b Curve
+379471 h Close
