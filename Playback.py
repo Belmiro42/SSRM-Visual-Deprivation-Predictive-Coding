@@ -208,6 +208,7 @@ fd = open(f"{participant_number}.txt", "w", buffering=1)
 start = 0
 XboxController()
 ok()
+print_time(fd, start, "Brightness set at " + str(brightness))
 start = timefr.time()
 start_experiment(fd, start)
 
