@@ -206,7 +206,7 @@ sin_440()
 participant_number = input("Enter Participant Number: ")
 fd = open(f"{participant_number}.txt", "w", buffering=1)
 start = 0
-#XboxController()
+XboxController()
 ok()
 start = timefr.time()
 start_experiment(fd, start)

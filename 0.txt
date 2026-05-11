@@ -1,6 +1,0 @@
-0 g Symmetrical
-7252 Left Beep Start
-7282 Right Light On
-7392 Right Light Off
-7392 Left Beep Stop
-7673 w Symmetrical
